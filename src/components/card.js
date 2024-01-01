@@ -2,14 +2,13 @@ import { addLikeRequest, deleteLikeRequest } from "./api";
 
 const cardTemplate = document.querySelector("#card-template").content;
 
-export function createCard(
-  card,
-  deleteFunc,
-  openPopupCardFunc,
-  likeFunc,
-  myId
-) {
-  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+function getCardTemplate() {
+  const cardTemplate = document.querySelector("#card-template");
+  return cardTemplate.content.querySelector(".card").cloneNode(true);
+}
+
+export function createCard(card, deleteFunc, openPopupCardFunc, likeFunc, myId) {
+  const cardElement = getCardTemplate();
   const deleteButton = cardElement.querySelector(".card__delete-button");
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");

@@ -77,7 +77,7 @@ const validationConfig = {
 };
 
 // Мой ID
-export let accountId = "";
+let accountId = "";
 
 /*-----------------------------------------------------------------------------------
     

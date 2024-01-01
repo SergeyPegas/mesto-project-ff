@@ -6,14 +6,24 @@ const config = {
   },
 };
 
-
+// отправка GET запроса к серверу
 function get(uri) {
   return fetch(config.baseUrl + uri, {
     headers: config.headers,
   }).then(handleResponse);
 }
 
+// запрос на получение информации о пользователе, используя функцию get() и метод GET
+export function getMyInfoRequest() {
+  return get("/users/me");
+}
 
+// запрос на получение информации о карточках, используя функцию get() и метод GET.
+export function getCardsRequest() {
+  return get("/cards");
+}
+
+// отправка POST запроса к серверу
 function post(uri, data, method = "POST") {
   return fetch(config.baseUrl + uri, {
     method,
@@ -22,7 +32,7 @@ function post(uri, data, method = "POST") {
   }).then(handleResponse);
 }
 
-
+// обработка ответа от сервера, возвращает объект JSON если ответ успешен и промис с ошибкой в противном случае.
 const handleResponse = (response) => {
   if (response.ok) {
     return response.json();
@@ -31,12 +41,12 @@ const handleResponse = (response) => {
   }
 };
 
-
+// запрос на удаление карточки, используя функцию post()
 export function deleteCardRequest(cardId) {
   return post(`/cards/${cardId}`, {}, "DELETE");
 }
 
-
+// запрос на добавление новой карточки, используя функцию post()
 export function addCardRequest(cardName, cardLink) {
   return post("/cards", {
     name: cardName,
@@ -44,7 +54,7 @@ export function addCardRequest(cardName, cardLink) {
   });
 }
 
-
+// запрос на изменение данных профиля, используя функцию post() и метод PATCH.
 export function changeProfileInfoRequest(profileName, profileDescription) {
   return post(
     "/users/me",
@@ -56,7 +66,7 @@ export function changeProfileInfoRequest(profileName, profileDescription) {
   );
 }
 
-
+// запрос на изменение аватара, используя функцию post() и метод PATCH.
 export function changeAvatarRequest(inputLink) {
   return post(
     "/users/me/avatar",
@@ -67,22 +77,12 @@ export function changeAvatarRequest(inputLink) {
   );
 }
 
-
-export function getMyInfoRequest() {
-  return get("/users/me");
-}
-
-
-export function getCardsRequest() {
-  return get("/cards");
-}
-
-
+// запрос на удаление лайка карточке, используя функцию post() и метод DELETE.
 export function deleteLikeRequest(card) {
   return post(`/cards/likes/${card["_id"]}`, {}, "DELETE");
 }
 
-
+// запрос на добавление лайка карточке, используя функцию post() и метод PUT.
 export function addLikeRequest(card) {
   return post(`/cards/likes/${card["_id"]}`, {}, "PUT");
 }
