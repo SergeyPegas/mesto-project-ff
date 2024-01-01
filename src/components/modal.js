@@ -1,24 +1,50 @@
-function openModal(popup) {
-  popup.classList.add("popup_is-opened");
-  document.addEventListener("keydown", handleEscClose);
+/*  
+    Объект для данного модуля для возможности переиспользования.
+    Не передается в качестве параметра, так как 
+    предполагается использование только в этом файле, 
+    поэтому вызывается из глобальной области видимости 
+*/
+const config = {
+  openPopupClass: "popup_is-opened",
+  animatedPopupClass: "popup_is-animated",
+};
+
+// Функция открытия попапа
+export function openPopup(popup) {
+  popup.classList.add(config.animatedPopupClass);
+
+  // Добавляем таймаут для добавления класса после анимации
+  setTimeout(() => {
+    popup.classList.add(config.openPopupClass);
+  }, 0);
+
+  document.addEventListener("keydown", closePopupByESC);
 }
 
-function closeModal(popup) {
-  popup.classList.remove("popup_is-opened");
-  document.removeEventListener("keydown", handleEscClose);
+// Функция закрытия попапа
+export function closePopup(popup) {
+  popup.classList.remove(config.openPopupClass);
+
+  // Откладываем удаление на время работы анимации
+  setTimeout(() => {
+    popup.classList.remove(config.animatedPopupClass);
+  }, 600);
+
+  document.removeEventListener("keydown", closePopupByESC);
 }
 
-function handleOverlayClose(evt) {
-  if (evt.target === evt.currentTarget) {
-    closeModal(evt.currentTarget);
-  }
-}
-
-function handleEscClose(evt) {
+// Функция закрытия попапа кнопкой ESC
+function closePopupByESC(evt) {
   if (evt.key === "Escape") {
-    const popupOpened = document.querySelector(".popup_is-opened");
-    closeModal(popupOpened);
+    const openedPopup = document.querySelector("." + config.openPopupClass);
+
+    closePopup(openedPopup);
   }
 }
 
-export { openModal, closeModal, handleOverlayClose };
+// Функция закрытия попапа по оверлэю
+export function closePopupByOverlay(evt) {
+  if (evt.target.classList.contains(config.openPopupClass)) {
+    closePopup(evt.target);
+  }
+}
