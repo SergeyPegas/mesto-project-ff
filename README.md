@@ -26,15 +26,15 @@ Cоздание и удаление карточки с помощью JavaScrip
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![HTML](https://img.shields.io/badge/HTML-%230db7ed.svg?style=for-the-badge&logo=html&logoColor=white)
-Flexbox
-Grid Layout
-БЭМ Nested
-Адаптивная верстка
-Псевдоклассы CSS
-Модульный подход
-Webpack
-Асинхронность
-API
+- Flexbox
+- Grid Layout
+- БЭМ Nested
+- Адаптивная верстка
+- Псевдоклассы CSS
+- Модульный подход
+- Webpack
+- Асинхронность
+- API
 
 
 ## Возможности проекта: 
