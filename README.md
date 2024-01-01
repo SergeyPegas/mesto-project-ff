@@ -47,7 +47,7 @@ Cоздание и удаление карточки с помощью JavaScrip
 
 ## Демонстрация  проекта
 
-Проект MESTO находиться по адресу: https://
+Проект MESTO находиться по адресу: https://sergeypegas.github.io/mesto-project-ff/
 
 ## Pull request
 
